@@ -5,50 +5,45 @@ namespace Algorithm16_17
     internal class Program
     {
 
-        //Bubble sort program
-        //Function to print Array
-        public static void print(int[] arr)
+        //Implementation of a Insertion sort
+
+
+        static void insert(int[] arr) /* function to sort an aay with insertion sort */
         {
-            //It will print array lenghth
-            int n = arr.Length;
-            for (int i = 0; i < n; i++)
-            {
-                Console.WriteLine(arr[i]);
-            }
-        }
-        //Implementation of a bubble sort
-        public static void bubble(int[] a)
-        {
-            //Length of array
-            int n = a.Length;
             int i, j, temp;
-            for (i = 0; i < n; i++)
+            int n = arr.Length;
+            for (i = 1; i < n; i++)
             {
-                for (j = i + 1; j < n; j++)
+                temp = arr[i];
+                j = i - 1;
+
+                while (j >= 0 && temp <= arr[j])  /* Move the elements greater than temp to one position ahead from their current position*/
                 {
-                    if (a[j] < a[i])
-                    {
-                        temp = a[i];
-                        a[i] = a[j];
-                        a[j] = temp;
-                    }
+                    arr[j + 1] = arr[j];
+                    j = j - 1;
                 }
-            }
 
+                arr[j + 1] = temp;
+            }
         }
-           public static void Main(string[] args)
-            {
-                //Array Declaration 
-             int[] a = { 15,100,25,8,38,17 };
-                Console.WriteLine("Before sorting array elements are:");
-            print(a);
-                //Method to call sorted array
 
-                bubble(a);
-                Console.WriteLine("\n After sorting array elements are:-");
-                print(a);
-
-            }
+        static void printArr(int[] a) /* function to print the array */
+        {
+            int i;
+            int n = a.Length;
+            for (i = 0; i < n; i++)
+                Console.Write(a[i] + " ");
+        }
+    
+public static void Main(string[] args)
+        {
+            int[] a = { 78,12,100,34,23,9};
+            Console.Write("Before sorting array elements are - \n");
+            printArr(a);
+            insert(a);
+            Console.Write("\nAfter sorting array elements are - \n");
+            printArr(a);
         }
     }
+}
 
